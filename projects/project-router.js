@@ -22,6 +22,7 @@ server.post('/', (req, res) => {
     })
 })
 
+
 server.get('/resources', (req, res) => {
     projects.getResources()
     .then(resources => {
@@ -67,6 +68,8 @@ server.post('/:id/tasks', (req, res) => {
         res.status(201).json({task})
     })
 })
+
+
 
 
 

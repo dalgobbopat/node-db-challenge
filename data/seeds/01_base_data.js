@@ -25,7 +25,7 @@ exports.seed = function(knex) {
       return knex('tasks').insert([
         {Project_id: 1, task_description: 'Open your code editor', notes: 'or do not ' },
         {Project_id: 1, task_description: 'Code probably', notes: 'if you feel like it' },
-        {Project_id: 1, task_description: '???????', notes: 'You got this' },
+        {Project_id: 1, task_description: 'Pass sprint', notes: 'You got this' },
         {Project_id: 2, task_description: 'lay in bed', notes: 'that is it ' }
       ]);
     })

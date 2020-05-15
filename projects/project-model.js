@@ -7,6 +7,9 @@ module.exports = {
     addProject,
     addResource,
     addTask,
+    specificTasks,
+    specificProjects,
+    specificResources,
     
 
 }
@@ -44,4 +47,21 @@ function addTask(task) {
 }
 
 
+function specificProjects(id) {
+    return db('projects')
+    .where('projects.id', id)
+}
 
+function specificResources(id) {
+    return db('projectResources AS pr')
+    .select('resource_name', 'resource_description')
+    .join('resources AS r', 'r.id', 'pr.Resource_id' )
+    .where('pr.Project_id', id)
+}
+
+function specificTasks(id) {
+    return db('tasks')
+    .select('task_description', 'notes', 'tasks.completed')
+    .where('Project_id', id)
+
+}
