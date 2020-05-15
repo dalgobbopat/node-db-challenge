@@ -70,6 +70,34 @@ server.post('/:id/tasks', (req, res) => {
 })
 
 
+server.get('/:id', (req, res) => {
+    const id = req.params.id
+    projects.specificProjects(id) 
+    .then( res1 => {console.log(res1[0].completed)
+        res1[0].completed ? res1[0].completed = true : res1[0].completed = false
+        projects.specificResources(id)
+       .then( res2 => {
+            res1[0].resources = res2
+            projects.specificTasks(id)
+                .then( res3 => {
+                    res3.map( e => {
+                        e.completed ? e.completed = true : e.completed = false
+                    })
+                    res1[0].tasks = res3
+                    res.status(200).json(res1[0])
+                })
+                .catch(err => {
+                console.log(err)
+                })
+       })
+       .catch(err => {
+        console.log(err)
+       })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
 
 
 
